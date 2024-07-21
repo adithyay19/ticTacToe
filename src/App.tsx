@@ -2,32 +2,71 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import Tile from './Tile'
+
+
 
 function App() {
   const [count, setCount] = useState(0)
+  const [player, setPlayer] = useState(0)
+  const [value, setValue] = useState('');
+
+  const player1 = document.getElementById('1');
+  const player2 = document.getElementById('2');
+
+  function switchPlayer() {
+    player1?.classList.toggle('hidden');
+    player2?.classList.toggle('hidden');
+    setPlayer(player===0 ? 1 : 0);
+    setValue(player===0 ? 'X' : "O");
+    console.log(value);
+    
+
+    // props.setTileValue;
+      
+  }
+  
 
   return (
     <>
       <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <div className='card'>
+          <div className='players'>
+            <label className='' id='1'>PLAYER 1</label>
+            <label className='hidden' id='2'>PLAYER 2</label>
+          </div>
+          <div className='gridbox'>
+            <div onClick={switchPlayer}>
+              <Tile player={player} value={value}/>
+            </div>
+            <div onClick={switchPlayer}>
+              <Tile player={player} change={switchPlayer} value={value}/>
+            </div>
+            <div onClick={switchPlayer}>
+              <Tile player={player} change={switchPlayer} value={value}/>
+            </div>
+            <div onClick={switchPlayer}>
+              <Tile player={player} change={switchPlayer} value={value}/>
+            </div>
+            <div onClick={switchPlayer}>
+              <Tile player={player} change={switchPlayer} value={value}/>
+            </div>
+            <div onClick={switchPlayer}>
+              <Tile player={player} change={switchPlayer} value={value}/>
+            </div>
+            <div onClick={switchPlayer}>
+              <Tile player={player} change={switchPlayer} value={value}/>
+            </div>
+            <div onClick={switchPlayer}>
+              <Tile player={player} change={switchPlayer} value={value}/>
+            </div>
+            <div onClick={switchPlayer}>
+              <Tile player={player} change={switchPlayer} value={value}/>
+            </div>
+          </div>
+          <button onClick={switchPlayer}>Switch</button>
+        </div>
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
